@@ -18,7 +18,7 @@ public class LogRestController {
 	@GetMapping("/hello")
 	public ResponseEntity<Object> logCheck(){
 
-		for(int i=0; i<5;i++) { 	
+		for(int i=0; i<2;i++) { 	
 		logger.log(Level.SEVERE," ERROR with java.util.logging");
 		try {
 			Thread.sleep(5000);
@@ -27,7 +27,7 @@ public class LogRestController {
 			e.printStackTrace();
 		}
 		}
-		return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<>(HttpStatus.OK);
 		
 	}
 	@GetMapping("/counter")
@@ -42,9 +42,9 @@ public class LogRestController {
 	@GetMapping("/error")
 	public ResponseEntity<Object> err(){
 
-		logger.log(Level.SEVERE," ERROR");
+		logger.log(Level.SEVERE," ERROR", new IllegalArgumentException());
 
-			throw new RuntimeException();
+		return new ResponseEntity<Object>( HttpStatus.OK);
 		
 	}
 }
