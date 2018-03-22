@@ -1,6 +1,5 @@
 package com.stackdriver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +15,11 @@ import com.google.monitoring.v3.TimeInterval;
 import com.google.monitoring.v3.TimeSeries;
 import com.google.monitoring.v3.TypedValue;
 import com.google.protobuf.util.Timestamps;
+import java.util.logging.Logger;
 
 public class StackDriverMain {
-
+	private static final Logger logger = Logger.getLogger(StackDriverMain.class.getName());
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
@@ -73,6 +74,8 @@ public class StackDriverMain {
 			    metricServiceClient.createTimeSeries(request);
 
 			    System.out.printf("Done writing time series data.%n");
+			    logger.info("Logging INFO with java.util.logging");
+			    logger.severe("Logging ERROR with java.util.logging");
 
 			    metricServiceClient.close();
 	}
