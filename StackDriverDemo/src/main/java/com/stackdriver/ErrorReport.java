@@ -12,8 +12,10 @@ public class ErrorReport {
 		try {
 			throw new Exception("General Error");
 		}catch(Exception e) {
+			StringWriter exceptionWriter = new StringWriter();
+		    e.printStackTrace(new PrintWriter(exceptionWriter));
 			Map<String, Object> errorData = new HashMap<String, Object>();
-			errorData.put("message", "ERROR Loggs");
+			errorData.put("message", exceptionWriter.toString());
 			LOGGER.log("error", errorData);
 		}
 		Map<String, Object> data = new HashMap<String, Object>();
