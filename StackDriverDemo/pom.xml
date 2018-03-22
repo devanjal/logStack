@@ -10,11 +10,6 @@
       <artifactId>google-cloud-monitoring</artifactId>
       <version>0.34.0-beta</version>
     </dependency>
-    <dependency>
-  <groupId>com.google.cloud</groupId>
-  <artifactId>google-cloud-logging</artifactId>
-  <version>1.14.0</version>
-</dependency>
-</dependencies>
+    </dependencies>
 </project>
 
