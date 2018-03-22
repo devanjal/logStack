@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import com.google.api.Metric;
 import com.google.api.MonitoredResource;
@@ -18,7 +17,6 @@ import com.google.monitoring.v3.TypedValue;
 import com.google.protobuf.util.Timestamps;
 
 public class StackDriverMain {
-	 private static final Logger logger = Logger.getLogger(StackDriverMain.class.getName());
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception {
 		
@@ -75,8 +73,6 @@ public class StackDriverMain {
 			    metricServiceClient.createTimeSeries(request);
 
 			    System.out.printf("Done writing time series data.%n");
-			    logger.info("Logging INFO with java.util.logging");
-			    logger.severe("Logging ERROR with java.util.logging");
 
 			    metricServiceClient.close();
 	}
