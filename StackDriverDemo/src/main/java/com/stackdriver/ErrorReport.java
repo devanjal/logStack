@@ -16,12 +16,13 @@ public class ErrorReport {
 		}catch(Exception e) {
 			StringWriter exceptionWriter = new StringWriter();
 		    e.printStackTrace(new PrintWriter(exceptionWriter));
-//			Map<String, Object> errorData = new HashMap<String, Object>();
-//			errorData.put("message", exceptionWriter.toString());
-//			LOGGER.log("error", errorData);
+			Map<String, Object> errorData = new HashMap<String, Object>();
+			errorData.put("message", exceptionWriter.toString());
+			LOGGER.log("error", errorData);
 			LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
 		}
 	    LOGGER.log("info", "Simple Entry", ErrorReport.class.getName());
+	    
 	    
 
 	}
