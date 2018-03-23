@@ -86,10 +86,10 @@ public class StackDriverMain {
 			}catch(Exception e) {
 			StringWriter exceptionWriter = new StringWriter();
 		    e.printStackTrace(new PrintWriter(exceptionWriter));
-			//Map<String, Object> errorData = new HashMap<String, Object>();
-			//errorData.put("message", exceptionWriter.toString());
-			//LOGGER.log("error", errorData);
-			LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
+			Map<String, Object> errorData = new HashMap<String, Object>();
+			errorData.put("message", exceptionWriter.toString());
+			LOGGER.log("error", errorData);
+		//	LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
 		}
 
 			    metricServiceClient.close();
