@@ -15,7 +15,7 @@ public class ErrorReport {
 			throw new Exception("General Error");
 		}catch(Exception e) {
 			StringWriter exceptionWriter = new StringWriter();
-//		    e.printStackTrace(new PrintWriter(exceptionWriter));
+		    e.printStackTrace(new PrintWriter(exceptionWriter));
 //			Map<String, Object> errorData = new HashMap<String, Object>();
 //			errorData.put("message", exceptionWriter.toString());
 //			LOGGER.log("error", errorData);
