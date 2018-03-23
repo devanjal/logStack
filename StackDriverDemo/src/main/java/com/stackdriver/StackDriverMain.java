@@ -2,6 +2,8 @@ package com.stackdriver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -16,20 +18,25 @@ import com.google.monitoring.v3.TimeSeries;
 import com.google.monitoring.v3.TypedValue;
 import com.google.protobuf.util.Timestamps;
 
+import org.fluentd.logger.FluentLogger;
+
 public class StackDriverMain {
+	private static FluentLogger LOGGER = FluentLogger.getLogger(StackDriverMain.class.getName());
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception {
-		
-		
-		// TODO Auto-generated method stub
+
 		 String projectId = System.getProperty("projectId");
+		 double data=4123.45;
 		 MetricServiceClient metricServiceClient = MetricServiceClient.create();
 		 TimeInterval interval = TimeInterval.newBuilder()
 			        .setEndTime(Timestamps.fromMillis(System.currentTimeMillis()))
 			        .build();
 			    TypedValue value = TypedValue.newBuilder()
-			        .setDoubleValue(123.45)
+			        .setDoubleValue(data)
 			        .build();
+					
+				LOGGER.log("info", "Data", data);
+				
 			    Point point = Point.newBuilder()
 			        .setInterval(interval)
 			        .setValue(value)
@@ -71,8 +78,19 @@ public class StackDriverMain {
 
 			    // Writes time series data
 			    metricServiceClient.createTimeSeries(request);
-
+				LOGGER.log("info", "Done writing time series data", StackDriverMain.class.getName());
 			    System.out.printf("Done writing time series data.%n");
+				
+				try {
+			throw new Exception("General Error");
+			}catch(Exception e) {
+			StringWriter exceptionWriter = new StringWriter();
+		    e.printStackTrace(new PrintWriter(exceptionWriter));
+			Map<String, Object> errorData = new HashMap<String, Object>();
+			errorData.put("message", exceptionWriter.toString());
+			LOGGER.log("error", errorData);
+		//	LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
+		}
 
 			    metricServiceClient.close();
 	}
