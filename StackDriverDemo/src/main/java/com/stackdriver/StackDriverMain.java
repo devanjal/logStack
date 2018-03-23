@@ -76,7 +76,7 @@ public class StackDriverMain {
 			        .addAllTimeSeries(timeSeriesList)
 			        .build();
 
-			    // Writes time series data
+			    // Writes time series data to custom metric on Monitoring System Panel
 			    metricServiceClient.createTimeSeries(request);
 				LOGGER.log("info", "Done writing time series data", StackDriverMain.class.getName());
 			    System.out.printf("Done writing time series data.%n");
@@ -86,10 +86,10 @@ public class StackDriverMain {
 			}catch(Exception e) {
 			StringWriter exceptionWriter = new StringWriter();
 		    e.printStackTrace(new PrintWriter(exceptionWriter));
-			Map<String, Object> errorData = new HashMap<String, Object>();
-			errorData.put("message", exceptionWriter.toString());
-			LOGGER.log("error", errorData);
-		//	LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
+			//Map<String, Object> errorData = new HashMap<String, Object>();
+			//errorData.put("message", exceptionWriter.toString());
+			//LOGGER.log("error", errorData);
+			LOGGER.log("error",exceptionWriter.toString() , ErrorReport.class.getName());
 		}
 
 			    metricServiceClient.close();
